@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from models import Category, Project, Task
-from serializers import ProjectSerializer, CategorySerializer, TasksSerializer
+from .models import Category, Project, Task
+from .serializers import ProjectSerializer, CategorySerializer, TasksSerializer
 
 class ProjectViewSet(viewsets.ModelViewSet):
-	queryset = Project.object.all()
+	queryset = Project.objects.all()
 	serializer_class = ProjectSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
