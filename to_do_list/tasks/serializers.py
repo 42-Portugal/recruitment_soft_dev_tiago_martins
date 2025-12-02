@@ -10,6 +10,8 @@ class CategorySerializer(serializers.ModelSerializer):
 			]
 
 class ProjectSerializer(serializers.ModelSerializer):
+	tasks_count = serializers.IntegerField(source='tasks.count', read_only=True)
+
 	class Meta:
 		model = Project
 		fields = [
@@ -32,5 +34,6 @@ class TasksSerializer(serializers.ModelSerializer):
 			'project_id',
 			'categories_id',
 			'created_at',
-			'updated_at'
+			'updated_at',
+			'completed_at'
 		]
