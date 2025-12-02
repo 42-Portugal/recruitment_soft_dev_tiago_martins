@@ -18,6 +18,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 			'description']
 
 class TasksSerializer(serializers.ModelSerializer):
+	project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.object.all())
+	categories_id = serializers.PrimaryKeyRelatedField(source='categories', many=True, queryset=Category.object.all())
+
 	class Meta:
 		model = Task
 		fields = [
@@ -26,8 +29,8 @@ class TasksSerializer(serializers.ModelSerializer):
 			'description',
 			'status',
 			'due_date',
-			'project',
-			'categories',
+			'project_id',
+			'categories_id',
 			'created_at',
 			'updated_at'
 		]
