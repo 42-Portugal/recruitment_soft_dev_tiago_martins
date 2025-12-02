@@ -8,7 +8,7 @@ class Category(models.Model):
 
 
 class Project(models.Model):
-	title = models.CharField(max_lenght=200)
+	title = models.CharField(max_length=200)
 	description = models.TextField()
 
 	def __str__(self):
@@ -21,7 +21,7 @@ class Task(models.Model):
 		('done', 'Done'),
 	]
 
-	title = models.CharField(max_lenght=255)
+	title = models.CharField(max_length=255)
 	description = models.TextField()
 	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='not_started')
 	due_date = models.DateTimeField()
