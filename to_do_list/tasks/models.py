@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Category(models.Model):
 	name = models.CharField(max_length=100)
@@ -29,7 +30,12 @@ class Task(models.Model):
 	categories = models.ManyToManyField(Category, related_name='tasks')
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	completed_at = models.DateTimeField(null=True, blank=True)
 
 	def __str__(self):
 		return self.title
 	
+	def save(self, *args, **kwargs):
+		if self.status == 'done' and not self.completed_at:
+			self.completed_at = timezone.now()
+		super().save(*args, **kwargs)
