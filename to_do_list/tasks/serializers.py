@@ -17,7 +17,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 		fields = [
 			'id',
 			'title',
-			'description']
+			'description',
+			'tasks_count'
+			]
 
 class TasksSerializer(serializers.ModelSerializer):
 	project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
