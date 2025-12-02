@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Project, Category, Task
+from .models import Project, Category, Task
 
 class CategorySerializer(serializers.ModelSerializer):
 	class Meta:
@@ -18,8 +18,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 			'description']
 
 class TasksSerializer(serializers.ModelSerializer):
-	project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.object.all())
-	categories_id = serializers.PrimaryKeyRelatedField(source='categories', many=True, queryset=Category.object.all())
+	project_id = serializers.PrimaryKeyRelatedField(source='project', queryset=Project.objects.all())
+	categories_id = serializers.PrimaryKeyRelatedField(source='categories', many=True, queryset=Category.objects.all())
 
 	class Meta:
 		model = Task
